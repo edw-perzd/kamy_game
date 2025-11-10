@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "kamy_beta.sln"
+    "dotnet.defaultSolution": "kamy_beta.sln",
+    "dotnet.preferCSharpExtension": true
 }
