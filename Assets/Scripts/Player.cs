@@ -33,8 +33,9 @@ public class Player : MonoBehaviour
 
         if (move != 0)
             transform.localScale = new Vector3(Mathf.Sign(move) * 5, 5, 1);
-        
 
+
+        anim.SetBool("inFloor", isGrounded);
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumForce);
