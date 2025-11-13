@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class OptionsScenes : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        var noDestroyObjects = FindObjectsOfType<OptionsScenes>();
+        if (noDestroyObjects.Length > 1)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        DontDestroyOnLoad(this.gameObject);
     }
 }
