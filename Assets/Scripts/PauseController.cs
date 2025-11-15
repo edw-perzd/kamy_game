@@ -5,13 +5,18 @@ using UnityEngine;
 public class PauseController : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject optionsMenu;
     public bool isPaused = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
             {
+                if (optionsMenu.activeSelf)
+                {
+                    optionsMenu.SetActive(false);
+                }
                 ResumeGame();
             }
             else
