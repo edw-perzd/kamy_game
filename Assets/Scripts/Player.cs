@@ -10,7 +10,9 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2d;
     private float move;
     public float jumForce = 4.0f;
+    public float reboteForce = 4.0f;
     private bool isGrounded;
+    private bool recibiendoDanio = false;
     public Transform groundCheck;
     public float groundRadius = 0.1f;
     public LayerMask groundLayer;
@@ -34,12 +36,27 @@ public class Player : MonoBehaviour
         if (move != 0)
             transform.localScale = new Vector3(Mathf.Sign(move) * 5, 5, 1);
 
-
+            
         anim.SetBool("inFloor", isGrounded);
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        anim.SetBool("recibeDanio", recibiendoDanio);
+        if (Input.GetButtonDown("Jump") && isGrounded && !recibiendoDanio)
         {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumForce);
+
         }
+    }
+    public void RecibeDanio(Vector2 direccion, int cantDanio)
+    {
+        if (!recibiendoDanio)
+        {
+            recibiendoDanio = true;
+            Vector2 rebote = new Vector2(transform.position.x - direccion.x, 1).normalized;
+            rb2d.AddForce(rebote * reboteForce, ForceMode2D.Impulse);
+        }
+    }
+    public void DesactivarDanio()
+    {
+        recibiendoDanio = false;
     }
     void FixedUpdate()
     {

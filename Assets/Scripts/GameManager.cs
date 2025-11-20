@@ -1,12 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public int TotalScore { get { return totalScore; } }
     private int totalScore = 0;
+
+    public GameObject gameOverPanel;
+    public TextMeshProUGUI gameoverScoreText;
+    public Button restartButton;
+    public Button mainMenuButton;
+    private bool isGameOver = false;
 
     void Awake()
     {
@@ -22,5 +31,60 @@ public class GameManager : MonoBehaviour
     public void AddScore(int score)
     {
         totalScore += score;
+    }
+
+    void Start()
+    {
+        if(gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
+        }
+        if (restartButton != null)
+        {
+            restartButton.onClick.AddListener(RestartGame);
+        }
+        if (mainMenuButton != null)
+        {
+            mainMenuButton.onClick.AddListener(ReturnToMainMenu);
+        }
+    }
+    
+    void Update()
+    {
+        if (isGameOver)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RestartGame();
+            }
+            if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                ReturnToMainMenu();
+            }
+        }
+    }
+    public void GameOver()
+    {
+        if (isGameOver) return;
+        isGameOver = true;
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(true);
+        }
+        if (gameoverScoreText != null)
+        {
+            gameoverScoreText.text = "GAME OVER\nScore: " + totalScore.ToString() + "\nR - Reiniciar\nEsc - Menu Principal";
+        }
+    }
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
     }
 }

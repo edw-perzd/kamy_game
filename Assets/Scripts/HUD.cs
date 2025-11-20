@@ -9,6 +9,6 @@ public class HUD : MonoBehaviour
 
     void Update()
     {
-        scoreText.text = "Score: " + GameManager.Instance.TotalScore.ToString();
+        scoreText.text = GameManager.Instance.TotalScore.ToString();
     }
 }
