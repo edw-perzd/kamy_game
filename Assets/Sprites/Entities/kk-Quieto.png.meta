@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e43a403d90e5f64b81887d3b29cb3a0
+guid: 17187d9d6116c504598350b5f3dc7720
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,7 +136,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KK_Walk_0
+      name: kk-Quieto_0
       rect:
         serializedVersion: 2
         x: 3
@@ -150,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d2aa1dc796746c4a8da937c288a1fdc
-      internalID: 846193073
+      spriteID: 709db234c22d9fc4da1cbc332cd76ce4
+      internalID: 486988716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_1
+      name: kk-Quieto_1
       rect:
         serializedVersion: 2
         x: 35
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25e90289dabf80c4b92cdc445970d6af
-      internalID: -1715462827
+      spriteID: a09a98f76fa734d47bd5e18e584bca58
+      internalID: -508501966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_2
+      name: kk-Quieto_2
       rect:
         serializedVersion: 2
         x: 67
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfe0fb03dc108d84b9b6100ef760b21a
-      internalID: 139002220
+      spriteID: fde67fe944c189149af8678ea03934a5
+      internalID: -1189270384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_3
+      name: kk-Quieto_3
       rect:
         serializedVersion: 2
         x: 99
-        y: 4
+        y: 1
         width: 27
-        height: 27
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90df0dd5f7be23a4aa1aeb02d6b9ad91
-      internalID: 1016779237
+      spriteID: d20b6eea9323c4b4c9db3c6a538880b4
+      internalID: 571530377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_4
+      name: kk-Quieto_4
       rect:
         serializedVersion: 2
         x: 131
-        y: 4
+        y: 1
         width: 27
-        height: 27
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ce0b2574a491704da95011eaaf3a2a9
-      internalID: -360272920
+      spriteID: 15a13e5209808c24f8340df11e92a728
+      internalID: -2065967985
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_5
+      name: kk-Quieto_5
       rect:
         serializedVersion: 2
         x: 163
-        y: 4
+        y: 1
         width: 27
-        height: 27
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d62ad48eb3cc911429d1191ec6fc5096
-      internalID: -2099699372
+      spriteID: 6688d75e218fbed4e8eaeb37ac02a015
+      internalID: -1316752816
       vertices: []
       indices: 
       edges: []
@@ -272,12 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KK_Walk_0: 846193073
-      KK_Walk_1: -1715462827
-      KK_Walk_2: 139002220
-      KK_Walk_3: 1016779237
-      KK_Walk_4: -360272920
-      KK_Walk_5: -2099699372
+      kk-Quieto_0: 486988716
+      kk-Quieto_1: -508501966
+      kk-Quieto_2: -1189270384
+      kk-Quieto_3: 571530377
+      kk-Quieto_4: -2065967985
+      kk-Quieto_5: -1316752816
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

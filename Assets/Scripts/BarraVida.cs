@@ -12,12 +12,12 @@ public class BarraVida : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player").GetComponent<Player>();
-        vidaMaxima = player.health;
+        vidaMaxima = player.vidaMax;
     }
 
     // Update is called once per frame
     void Update()
     {
-        rellenoBarraVida.fillAmount = player.health / vidaMaxima;
+        rellenoBarraVida.fillAmount = (float)player.health / vidaMaxima;
     }
 }

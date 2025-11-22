@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e43a403d90e5f64b81887d3b29cb3a0
+guid: 7026869e810ceb840a3430c39223a01a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KK_Walk_0
+      name: kk-morido_0
       rect:
         serializedVersion: 2
         x: 3
         y: 1
         width: 27
-        height: 30
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d2aa1dc796746c4a8da937c288a1fdc
-      internalID: 846193073
+      spriteID: 2802bd1bf2467674c8267e885bdb1bb4
+      internalID: 1273698348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_1
+      name: kk-morido_7
       rect:
         serializedVersion: 2
         x: 35
         y: 1
         width: 27
-        height: 30
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25e90289dabf80c4b92cdc445970d6af
-      internalID: -1715462827
+      spriteID: 4e4bb4ac163654a428e174ee6e821d6e
+      internalID: -339618383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_2
+      name: kk-morido_8
       rect:
         serializedVersion: 2
         x: 67
         y: 1
         width: 27
-        height: 30
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfe0fb03dc108d84b9b6100ef760b21a
-      internalID: 139002220
+      spriteID: ca47e634b22a8fe4d90e4666514cebe6
+      internalID: 560909355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_3
+      name: kk-morido_9
       rect:
         serializedVersion: 2
         x: 99
-        y: 4
+        y: 1
         width: 27
-        height: 27
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90df0dd5f7be23a4aa1aeb02d6b9ad91
-      internalID: 1016779237
+      spriteID: 02b0ed7c83ccf664480d48cfc8fc275c
+      internalID: 2088306560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_4
+      name: kk-morido_14
       rect:
         serializedVersion: 2
         x: 131
-        y: 4
+        y: 1
         width: 27
-        height: 27
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ce0b2574a491704da95011eaaf3a2a9
-      internalID: -360272920
+      spriteID: 5d1f43846d0a0324e9b9a31af8a3cbea
+      internalID: 1808541198
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_5
+      name: kk-morido_1
       rect:
         serializedVersion: 2
         x: 163
-        y: 4
+        y: 1
         width: 27
-        height: 27
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d62ad48eb3cc911429d1191ec6fc5096
-      internalID: -2099699372
+      spriteID: 711f9db288a6de24db97b9451af245d0
+      internalID: 1206681363
       vertices: []
       indices: 
       edges: []
@@ -272,12 +272,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KK_Walk_0: 846193073
-      KK_Walk_1: -1715462827
-      KK_Walk_2: 139002220
-      KK_Walk_3: 1016779237
-      KK_Walk_4: -360272920
-      KK_Walk_5: -2099699372
+      kk-morido_0: 1273698348
+      kk-morido_1: 1206681363
+      kk-morido_10: -1698619834
+      kk-morido_11: 206906477
+      kk-morido_12: -472573039
+      kk-morido_13: 52508961
+      kk-morido_14: 1808541198
+      kk-morido_2: 613926850
+      kk-morido_3: -2063384677
+      kk-morido_4: 1877473552
+      kk-morido_5: 963554239
+      kk-morido_6: 807463722
+      kk-morido_7: -339618383
+      kk-morido_8: 560909355
+      kk-morido_9: 2088306560
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

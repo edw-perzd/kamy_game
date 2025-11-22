@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
     {
         totalScore += score;
     }
+    public void ResetScore()
+    {
+        totalScore = 0;
+    }
 
     void Start()
     {

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2e43a403d90e5f64b81887d3b29cb3a0
+guid: 59bb1fcd771596446a2da26e9d21bfe9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KK_Walk_0
+      name: E1-Attack_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 1
-        width: 27
-        height: 30
+        x: 2
+        y: 0
+        width: 39
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d2aa1dc796746c4a8da937c288a1fdc
-      internalID: 846193073
+      spriteID: c6040a6b126d36d4ab1e3ec3c12c51f6
+      internalID: 104760635
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_1
+      name: E1-Attack_1
       rect:
         serializedVersion: 2
-        x: 35
-        y: 1
-        width: 27
-        height: 30
+        x: 50
+        y: 0
+        width: 39
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 25e90289dabf80c4b92cdc445970d6af
-      internalID: -1715462827
+      spriteID: f169a8be77d20514bbb1852e894a8881
+      internalID: -1163308805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_2
+      name: E1-Attack_2
       rect:
         serializedVersion: 2
-        x: 67
-        y: 1
-        width: 27
-        height: 30
+        x: 98
+        y: 0
+        width: 45
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,20 +192,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfe0fb03dc108d84b9b6100ef760b21a
-      internalID: 139002220
+      spriteID: aac57d463aaa8ea4cae83ed7f8a71e2d
+      internalID: 1705484706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_3
+      name: E1-Attack_3
       rect:
         serializedVersion: 2
-        x: 99
-        y: 4
-        width: 27
-        height: 27
+        x: 146
+        y: 0
+        width: 45
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,20 +213,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90df0dd5f7be23a4aa1aeb02d6b9ad91
-      internalID: 1016779237
+      spriteID: 0eae3e3840984264da72a29b43dea2bf
+      internalID: -1562493999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_4
+      name: E1-Attack_4
       rect:
         serializedVersion: 2
-        x: 131
-        y: 4
-        width: 27
-        height: 27
+        x: 194
+        y: 0
+        width: 46
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,20 +234,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ce0b2574a491704da95011eaaf3a2a9
-      internalID: -360272920
+      spriteID: 04570e79211f50b469cd338c8fa649ec
+      internalID: -1111210636
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: KK_Walk_5
+      name: E1-Attack_5
       rect:
         serializedVersion: 2
-        x: 163
-        y: 4
-        width: 27
-        height: 27
+        x: 242
+        y: 0
+        width: 46
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,8 +255,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d62ad48eb3cc911429d1191ec6fc5096
-      internalID: -2099699372
+      spriteID: d4e4fd3c110701b4698c210705c2162f
+      internalID: 1777317734
       vertices: []
       indices: 
       edges: []
@@ -272,12 +272,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KK_Walk_0: 846193073
-      KK_Walk_1: -1715462827
-      KK_Walk_2: 139002220
-      KK_Walk_3: 1016779237
-      KK_Walk_4: -360272920
-      KK_Walk_5: -2099699372
+      E1-Attack_0: 104760635
+      E1-Attack_1: -1163308805
+      E1-Attack_2: 1705484706
+      E1-Attack_3: -1562493999
+      E1-Attack_4: -1111210636
+      E1-Attack_5: 1777317734
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

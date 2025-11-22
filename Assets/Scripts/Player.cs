@@ -22,7 +22,10 @@ public class Player : MonoBehaviour
     // VARIABLES DE COMBATE
     // ===============================
     public bool isInvincible = false;
-    public int health = 3;
+    public bool recibeDanio;
+    private bool isNockbacking;
+    public int health;
+    public int vidaMax = 3;
 
     // ===============================
     // REINICIO / RESPAWN
@@ -34,6 +37,9 @@ public class Player : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        health = vidaMax;
+        recibeDanio = false;
+        isNockbacking = false;
 
         respawnPoint = transform.position; // Se guarda posición inicial
     }
@@ -44,7 +50,8 @@ public class Player : MonoBehaviour
 
         anim.SetBool("walking", move != 0);
 
-        rb2d.velocity = new Vector2(move * speed, rb2d.velocity.y);
+        if (!isNockbacking)
+            rb2d.velocity = new Vector2(move * speed, rb2d.velocity.y);
 
         if (move != 0)
             transform.localScale = new Vector3(Mathf.Sign(move) * 5, 5, 1);
@@ -56,12 +63,17 @@ public class Player : MonoBehaviour
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumForce);
         }
 
+        anim.SetBool("recibeDanio", recibeDanio);
         // =============================================
         // CAÍDA AL VACÍO → PIERDE 1 VIDA Y RESPAWNEA
         // =============================================
         if (transform.position.y < fallLimit)
         {
             FallDamage();
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            anim.SetTrigger("Attack");
         }
     }
 
@@ -77,6 +89,7 @@ public class Player : MonoBehaviour
     {
         if (!isInvincible)
         {
+            recibeDanio = true;
             health -= damage;
             Debug.Log("Daño recibido. Vida actual: " + health);
 
@@ -88,7 +101,12 @@ public class Player : MonoBehaviour
             {
                 StartInvincibility(1f);
             }
+            
         }
+    }
+    public void StopReceivingDamage()
+    {
+        recibeDanio = false;
     }
 
     // ===============================================
@@ -96,8 +114,16 @@ public class Player : MonoBehaviour
     // ===============================================
     public void Knockback(Vector3 sourcePosition, float force)
     {
+        isNockbacking = true;
         Vector2 direction = (transform.position - sourcePosition).normalized;
         rb2d.velocity = new Vector2(direction.x * force, force / 2f);
+        StartCoroutine(EndKnockback(0.3f));
+    }
+
+    private IEnumerator EndKnockback(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isNockbacking = false;
     }
 
     // ===============================================
@@ -140,5 +166,6 @@ public class Player : MonoBehaviour
     private void Die()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.Instance.ResetScore();
     }
 }

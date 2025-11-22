@@ -1,9 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MaloPatrullaje : MonoBehaviour
 {
+    public int scoreValue = 5;
     public int damage = 1;
-    public float knockbackForce = 15f;
+    public float knockbackForce = 3f;
     public float invincibilityTime = 1f;
 
     [Header("Puntos")]
@@ -11,12 +16,18 @@ public class MaloPatrullaje : MonoBehaviour
     public Transform pointB;
     public float moveSpeed = 2f;
     public float tolerance = 0.3f;
-
+    public int health = 3;
+    private bool enMovimiento;
+    private bool morido;
+    private bool isNockbacking;
     private Vector3 targetPosition;
     private Rigidbody2D rb;
+    private Animator anim;
 
     void Start()
     {
+        isNockbacking = false;
+        anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -41,9 +52,15 @@ public class MaloPatrullaje : MonoBehaviour
 
         Flip();
     }
+    void Update()
+    {
+        anim.SetBool("enMovimiento", enMovimiento);
+        anim.SetBool("morido", morido);
+    }
 
     void FixedUpdate()
     {
+        
         if (rb == null) return;
 
         Vector3 currentPosition = transform.position;
@@ -56,12 +73,17 @@ public class MaloPatrullaje : MonoBehaviour
         }
 
         // Movimiento hacia el objetivo
-        float directionX = Mathf.Sign(targetPosition.x - currentPosition.x);
-        rb.velocity = new Vector2(directionX * moveSpeed, rb.velocity.y);
+        if (!isNockbacking)
+        {
+            enMovimiento = true;
+            float directionX = Mathf.Sign(targetPosition.x - currentPosition.x);
+            rb.velocity = new Vector2(directionX * moveSpeed, rb.velocity.y);
+        }
     }
 
     private void Flip()
     {
+        enMovimiento = true;
         bool lookLeft = targetPosition.x < transform.position.x;
 
         Vector3 localScale = transform.localScale;
@@ -84,5 +106,43 @@ public class MaloPatrullaje : MonoBehaviour
             player.Knockback(transform.position, knockbackForce);
             player.StartInvincibility(invincibilityTime);
         }
+    }
+    public void Knockback(Vector3 sourcePosition, float force)
+    {
+        isNockbacking = true;
+        Vector2 direction = (transform.position - sourcePosition).normalized;
+        rb.velocity = new Vector2(direction.x * force, force / 2f);
+        StartCoroutine(EndKnockback(0.3f));
+    }
+
+    private IEnumerator EndKnockback(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isNockbacking = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+
+        health -= damage;
+        // Debug.Log("Daño al enemigo. Vida actual del enemigo: " + health);
+
+        if (health <= 0)
+        {
+            // Die();
+            morido = true;
+        }
+        else
+        {
+            morido = false;
+        }
+
+    }
+
+    private void Die()
+    {
+        // morido = true;
+        GameManager.Instance.AddScore(scoreValue);
+        Destroy(this.gameObject);
     }
 }
