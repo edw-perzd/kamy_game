@@ -3,9 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEditor.Experimental.GraphView;
 
 public class MaloPatrullaje : MonoBehaviour
 {
+    // ===============================
+    // VARIABLES PATRULLAJE CON IA SIMPLE
+    // ===============================
+    public Transform player;
+    public float detectionRange = 5f;
+    private Vector2 movement;
+    private bool playerDetected;
+
+
     public int scoreValue = 5;
     public int damage = 1;
     public float knockbackForce = 3f;
@@ -56,28 +66,53 @@ public class MaloPatrullaje : MonoBehaviour
     {
         anim.SetBool("enMovimiento", enMovimiento);
         anim.SetBool("morido", morido);
-    }
 
-    void FixedUpdate()
-    {
-        
         if (rb == null) return;
 
         Vector3 currentPosition = transform.position;
 
-        // Cuando llega cerca de un punto, cambia al otro
-        if (Mathf.Abs(targetPosition.x - currentPosition.x) < tolerance)
+        if (player != null)
         {
-            targetPosition = (targetPosition == pointB.position) ? pointA.position : pointB.position;
-            Flip();
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            if (distanceToPlayer < detectionRange)
+            {
+                Vector2 direction = (player.position - transform.position).normalized;
+                movement = new Vector2(direction.x, 0);
+                playerDetected = true;
+            }
+            else
+            {
+                movement = Vector2.zero;
+                playerDetected = false;
+            }
+        }
+
+        if (!playerDetected)
+        {
+            // Cuando llega cerca de un punto, cambia al otro
+            if (Mathf.Abs(targetPosition.x - currentPosition.x) < tolerance)
+            {
+                targetPosition = (targetPosition == pointB.position) ? pointA.position : pointB.position;
+                Flip();
+            }
         }
 
         // Movimiento hacia el objetivo
         if (!isNockbacking)
         {
-            enMovimiento = true;
-            float directionX = Mathf.Sign(targetPosition.x - currentPosition.x);
-            rb.velocity = new Vector2(directionX * moveSpeed, rb.velocity.y);
+            if (!playerDetected)
+            {
+                enMovimiento = true;
+                float directionX = Mathf.Sign(targetPosition.x - currentPosition.x);
+                rb.velocity = new Vector2(directionX * moveSpeed, rb.velocity.y);
+                Flip();
+            }
+            else
+            {
+                // rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
+                rb.velocity = new Vector2(movement.x * moveSpeed, rb.velocity.y);
+                FlipOnPersecucion();
+            }
         }
     }
 
@@ -85,6 +120,21 @@ public class MaloPatrullaje : MonoBehaviour
     {
         enMovimiento = true;
         bool lookLeft = targetPosition.x < transform.position.x;
+
+        Vector3 localScale = transform.localScale;
+
+        if (lookLeft)
+            localScale.x = -Mathf.Abs(localScale.x);
+        else
+            localScale.x = Mathf.Abs(localScale.x);
+
+        transform.localScale = localScale;
+    }
+
+    private void FlipOnPersecucion()
+    {
+        enMovimiento = true;
+        bool lookLeft = player.transform.position.x < transform.position.x;
 
         Vector3 localScale = transform.localScale;
 

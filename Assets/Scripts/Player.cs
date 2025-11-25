@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     // ===============================
     // REINICIO / RESPAWN
     // ===============================
-    public float fallLimit = -10f;
+    public float fallLimit = -15f;
     private Vector3 respawnPoint;   // NUEVO
 
     void Start()
