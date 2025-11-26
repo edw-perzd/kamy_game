@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PauseController : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip soundPause;
+    public AudioClip soundUnPause;
     public GameObject pauseBtn;
     public GameObject pauseMenu;
     public GameObject optionsMenu;
@@ -37,6 +40,7 @@ public class PauseController : MonoBehaviour
     }
     public void ResumeGame()
     {
+        PlayUnPause();
         pauseBtn.SetActive(true);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
@@ -44,9 +48,19 @@ public class PauseController : MonoBehaviour
     }
     public void PauseGame()
     {
+        PlayPause();
         pauseBtn.SetActive(false);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+    }
+
+    public void PlayPause()
+    {
+        audioSource.PlayOneShot(soundPause);
+    }
+    public void PlayUnPause()
+    {
+        audioSource.PlayOneShot(soundUnPause);
     }
 }

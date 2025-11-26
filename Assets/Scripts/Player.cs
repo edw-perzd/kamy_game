@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public PlayerSoundController playerSoundController;
     public float speed = 5f;
     private Animator anim;
     private Rigidbody2D rb2d;
@@ -17,6 +18,9 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
     private int diamonds;
     public TMP_Text textDiamonds;
+    private bool step1 = true;
+    float timeByStep = 0.3f;
+    float count = 0f;
 
     // ===============================
     // VARIABLES DE COMBATE
@@ -46,20 +50,40 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        
         move = Input.GetAxisRaw("Horizontal");
 
         anim.SetBool("walking", move != 0);
 
         if (!isNockbacking)
+        {
             rb2d.velocity = new Vector2(move * speed, rb2d.velocity.y);
+        }
 
         if (move != 0)
+        {
             transform.localScale = new Vector3(Mathf.Sign(move) * 5, 5, 1);
+            count += Time.deltaTime;
+            if (count >= timeByStep)
+            {
+                count = 0f;
+                if (step1)
+                {
+                    playerSoundController.PlayMov1();
+                }
+                else
+                {
+                    playerSoundController.PlayMov2();
+                }
+                step1 = !step1;
+            }
+        }
 
         anim.SetBool("inFloor", isGrounded);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            playerSoundController.PlaySaltar();
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumForce);
         }
 
@@ -73,6 +97,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
+            playerSoundController.PlayAtacar();
             anim.SetTrigger("Attack");
         }
     }
@@ -89,6 +114,7 @@ public class Player : MonoBehaviour
     {
         if (!isInvincible)
         {
+            playerSoundController.PlayRecibeDanio();
             recibeDanio = true;
             health -= damage;
             Debug.Log("Daño recibido. Vida actual: " + health);
@@ -146,6 +172,7 @@ public class Player : MonoBehaviour
     // ===============================================
     private void FallDamage()
     {
+        
         health -= 1;
         Debug.Log("El jugador cayó. Vida actual: " + health);
 
@@ -155,6 +182,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            playerSoundController.PlayMuerte();
             transform.position = respawnPoint; // Reaparece
             rb2d.velocity = Vector2.zero;
         }
@@ -165,6 +193,7 @@ public class Player : MonoBehaviour
     // ===============================================
     private void Die()
     {
+        playerSoundController.PlayMuerte();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameManager.Instance.ResetScore();
     }
