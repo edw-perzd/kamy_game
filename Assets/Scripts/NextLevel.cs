@@ -45,7 +45,7 @@ public class NextLevel : MonoBehaviour
         int nivelActual = SceneManager.GetActiveScene().buildIndex;
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
-        if (nextIndex < SceneManager.sceneCountInBuildSettings - 1)
+        if (nextIndex < SceneManager.sceneCountInBuildSettings)
         {
             for(int i = 0; i < levelsNames.Length; i++)
             {
@@ -57,16 +57,25 @@ public class NextLevel : MonoBehaviour
             }
             textButtonLevel.text = levelLbl + nextIndex;
             ButtonNextLevel.SetActive(true);
+            if (nextIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                textButtonLevel.text = "Ir a los creditos";
+                ButtonNextLevel.SetActive(true);
+            }
         }
         else
         {
-            textButtonLevel.text = "Ir a los creditos";
-            ButtonNextLevel.SetActive(true);
+            if (nextIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                textButtonLevel.text = "Ir a los creditos";
+                ButtonNextLevel.SetActive(true);
+            }
         }
     }
 
     public void LoadNextLevel()
     {
+        Debug.Log("Se ha pulsado nextLevel");
         Time.timeScale = 1f;
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
 

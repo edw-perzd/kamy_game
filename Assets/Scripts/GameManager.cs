@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
     // ================================
     public void GameOver()
     {
+        Time.timeScale = 0f;
         if (isGameOver) return;
         isGameOver = true;
 
@@ -97,7 +98,6 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        // 🔥 Asegurar que el panel se oculte
         if (gameOverPanel != null)
             gameOverPanel.SetActive(false);
 

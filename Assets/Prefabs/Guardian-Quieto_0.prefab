@@ -170,9 +170,14 @@ MonoBehaviour:
   dialogPanel: {fileID: 0}
   dialogueText: {fileID: 0}
   dialogLines:
-  - "Prueba de dialogo 1\t"
-  - Puedes saltar con Space
-  - Texto de Dialogo 3
+  - "Hola, soy el Guardian, representaci\xF3n misma de la naturaleza."
+  - "A lo largo del viaje te ir\xE9 dando tips, instrucciones y, si hace falta, alg\xFAn
+    rega\xF1o amistoso."
+  - "\xBFListo? Porque yo no\u2026 pero vamos igual."
+  - "Antes de iniciar tu traves\xEDa, debes aprender a moverte por este mundo.\nPresiona
+    \u2190 y \u2192 o A y D  para caminar."
+  - "Ning\xFAn h\xE9roe llega lejos sin aprender a elevarse.\nPresiona [Espacio]
+    para saltar."
 --- !u!1 &6573367173196437939
 GameObject:
   m_ObjectHideFlags: 0

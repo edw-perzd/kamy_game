@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
     // ===============================
     // REINICIO / RESPAWN
     // ===============================
-    public float fallLimit = -10f;
+    public float fallLimit = -20f;
     private Vector3 respawnPoint;
 
     void Start()
@@ -105,7 +105,10 @@ public class Player : MonoBehaviour
             FallDamage();
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            playerSoundController.PlayAtacar();
             anim.SetTrigger("Attack");
+        }
     }
 
     void FixedUpdate()
@@ -216,6 +219,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            playerSoundController.PlayRecibeDanio();
             transform.position = respawnPoint;
             rb2d.velocity = Vector2.zero;
         }
@@ -226,6 +230,7 @@ public class Player : MonoBehaviour
     // ===============================
     private void Die()
     {
+        playerSoundController.PlayRecibeDanio();
         GameManager.Instance.GameOver();
 
         rb2d.velocity = Vector2.zero;
