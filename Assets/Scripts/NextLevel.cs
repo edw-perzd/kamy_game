@@ -57,7 +57,7 @@ public class NextLevel : MonoBehaviour
             }
             textButtonLevel.text = levelLbl + nextIndex;
             ButtonNextLevel.SetActive(true);
-            if (nextIndex < SceneManager.sceneCountInBuildSettings)
+            if (nextIndex == SceneManager.sceneCountInBuildSettings)
             {
                 textButtonLevel.text = "Ir a los creditos";
                 ButtonNextLevel.SetActive(true);
@@ -65,7 +65,7 @@ public class NextLevel : MonoBehaviour
         }
         else
         {
-            if (nextIndex < SceneManager.sceneCountInBuildSettings)
+            if (nextIndex == SceneManager.sceneCountInBuildSettings)
             {
                 textButtonLevel.text = "Ir a los creditos";
                 ButtonNextLevel.SetActive(true);
