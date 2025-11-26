@@ -7,23 +7,32 @@ public class PauseController : MonoBehaviour
     public GameObject pauseBtn;
     public GameObject pauseMenu;
     public GameObject optionsMenu;
+    public GameObject youWinPanel;
     public bool isPaused = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        if(!youWinPanel.activeSelf)
         {
-            if (isPaused)
+            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
             {
-                if (optionsMenu.activeSelf)
+                if (isPaused)
                 {
-                    optionsMenu.SetActive(false);
+                    if (optionsMenu.activeSelf)
+                    {
+                        optionsMenu.SetActive(false);
+                    }
+                    ResumeGame();
                 }
-                ResumeGame();
+                else
+                {
+                    PauseGame();
+                }
             }
-            else
-            {
-                PauseGame();
-            }
+        }
+        else
+        {
+            pauseMenu.SetActive(false);
+            pauseBtn.SetActive(false);
         }
     }
     public void ResumeGame()
