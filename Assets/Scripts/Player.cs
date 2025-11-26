@@ -28,10 +28,21 @@ public class Player : MonoBehaviour
     public int vidaMax = 3;
 
     // ===============================
+    // ATAQUE AL JEFE FINAL
+    // ===============================
+    public Transform attackPoint;
+    public float attackRange = 0.5f;
+    public LayerMask bossLayer;
+    public int damageToBoss = 1;
+
+    // REFERENCIA AL ATTACK AREA
+    public GameObject attackArea;
+
+    // ===============================
     // REINICIO / RESPAWN
     // ===============================
     public float fallLimit = -10f;
-    private Vector3 respawnPoint;   // NUEVO
+    private Vector3 respawnPoint;
 
     void Start()
     {
@@ -41,7 +52,10 @@ public class Player : MonoBehaviour
         recibeDanio = false;
         isNockbacking = false;
 
-        respawnPoint = transform.position; // Se guarda posición inicial
+        respawnPoint = transform.position;
+
+        if (attackArea != null)
+            attackArea.SetActive(false);   // DESACTIVADO AL INICIAR
     }
 
     void Update()
@@ -59,22 +73,15 @@ public class Player : MonoBehaviour
         anim.SetBool("inFloor", isGrounded);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
-        {
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumForce);
-        }
 
         anim.SetBool("recibeDanio", recibeDanio);
-        // =============================================
-        // CAÍDA AL VACÍO → PIERDE 1 VIDA Y RESPAWNEA
-        // =============================================
+
         if (transform.position.y < fallLimit)
-        {
             FallDamage();
-        }
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
             anim.SetTrigger("Attack");
-        }
     }
 
     void FixedUpdate()
@@ -82,16 +89,15 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
     }
 
-    // ===============================================
-    //  MÉTODO DE RECIBIR DAÑO POR ENEMIGOS
-    // ===============================================
+    // ===============================
+    // DAÑO
+    // ===============================
     public void TakeDamage(int damage)
     {
         if (!isInvincible)
         {
             recibeDanio = true;
             health -= damage;
-            Debug.Log("Daño recibido. Vida actual: " + health);
 
             if (health <= 0)
             {
@@ -101,17 +107,17 @@ public class Player : MonoBehaviour
             {
                 StartInvincibility(1f);
             }
-            
         }
     }
+
     public void StopReceivingDamage()
     {
         recibeDanio = false;
     }
 
-    // ===============================================
-    //  KNOCKBACK
-    // ===============================================
+    // ===============================
+    // KNOCKBACK
+    // ===============================
     public void Knockback(Vector3 sourcePosition, float force)
     {
         isNockbacking = true;
@@ -126,9 +132,9 @@ public class Player : MonoBehaviour
         isNockbacking = false;
     }
 
-    // ===============================================
-    //  INVENCIBILIDAD TEMPORAL
-    // ===============================================
+    // ===============================
+    // INVENCIBILIDAD
+    // ===============================
     public void StartInvincibility(float time)
     {
         StartCoroutine(InvincibilityCoroutine(time));
@@ -141,13 +147,44 @@ public class Player : MonoBehaviour
         isInvincible = false;
     }
 
-    // ===============================================
-    //  CAÍDA AL VACÍO — PIERDE VIDA Y RESPAWN
-    // ===============================================
+    // ======================================================
+    // ACTIVACIÓN AUTOMÁTICA DEL ÁREA DE ATAQUE DESDE LA ANIMACIÓN
+    // ======================================================
+    public void EnableAttackArea()
+    {
+        if (attackArea != null)
+            attackArea.SetActive(true);
+    }
+
+    public void DisableAttackArea()
+    {
+        if (attackArea != null)
+            attackArea.SetActive(false);
+    }
+
+    // ===============================
+    // DAÑO AL JEFE FINAL
+    // ===============================
+    public void DealDamageToBoss()
+    {
+        Collider2D hitBoss = Physics2D.OverlapCircle(attackPoint.position, attackRange, bossLayer);
+
+        if (hitBoss != null)
+        {
+            BossFinal boss = hitBoss.GetComponent<BossFinal>();
+            if (boss != null)
+            {
+                boss.TakeDamage(damageToBoss);
+            }
+        }
+    }
+
+    // ===============================
+    // CAÍDA
+    // ===============================
     private void FallDamage()
     {
         health -= 1;
-        Debug.Log("El jugador cayó. Vida actual: " + health);
 
         if (health <= 0)
         {
@@ -155,17 +192,30 @@ public class Player : MonoBehaviour
         }
         else
         {
-            transform.position = respawnPoint; // Reaparece
+            transform.position = respawnPoint;
             rb2d.velocity = Vector2.zero;
         }
     }
 
-    // ===============================================
-    //  MUERTE — REINICIAR EL JUEGO
-    // ===============================================
+    // ===============================
+    // MUERTE → GAME OVER
+    // ===============================
     private void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        GameManager.Instance.ResetScore();
+        GameManager.Instance.GameOver();
+
+        rb2d.velocity = Vector2.zero;
+        rb2d.isKinematic = true;
+
+        this.enabled = false;
+        anim.SetBool("walking", false);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
