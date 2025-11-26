@@ -3576,6 +3576,7 @@ MonoBehaviour:
   pauseBtn: {fileID: 397643601454338322}
   pauseMenu: {fileID: 931285920712260819}
   optionsMenu: {fileID: 3758895734581544869}
+  youWinPanel: {fileID: 0}
   isPaused: 0
 --- !u!114 &7381022012292129902
 MonoBehaviour:
