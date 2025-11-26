@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class NextLevel : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip soundBright;
     [SerializeField] private GameObject UIScoreGame;
     [SerializeField] private GameObject UIYouWin;
     [SerializeField] private TMP_Text textNameLevel;
@@ -36,13 +38,14 @@ public class NextLevel : MonoBehaviour
 
     public void LlenarUIYouWin()
     {
+        PlayBright();
         Time.timeScale = 0f;
         UIScoreGame.SetActive(false);
         puntajeTotalText.text = puntajeTotalLbl + GameManager.Instance.TotalScore.ToString();
         int nivelActual = SceneManager.GetActiveScene().buildIndex;
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
-        if (nextIndex < SceneManager.sceneCountInBuildSettings)
+        if (nextIndex < SceneManager.sceneCountInBuildSettings - 1)
         {
             for(int i = 0; i < levelsNames.Length; i++)
             {
@@ -57,7 +60,8 @@ public class NextLevel : MonoBehaviour
         }
         else
         {
-            ButtonNextLevel.SetActive(false);
+            textButtonLevel.text = "Ir a los creditos";
+            ButtonNextLevel.SetActive(true);
         }
     }
 
@@ -75,5 +79,10 @@ public class NextLevel : MonoBehaviour
             Debug.Log("No hay más escenas. Este es el último nivel.");
             Debug.Log("No deberías poder acceder a esta función.");
         }
+    }
+
+    public void PlayBright()
+    {
+        audioSource.PlayOneShot(soundBright);
     }
 }
