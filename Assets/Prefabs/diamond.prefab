@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreValue: 1
-  audioSource: {fileID: 0}
-  soundRecoger: {fileID: 0}
+  audioSource: {fileID: 8287998112296031495}
+  soundRecoger: {fileID: 8300000, guid: 574065335f482a2498ab83cedb93252e, type: 3}
 --- !u!82 &8287998112296031495
 AudioSource:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

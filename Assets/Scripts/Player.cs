@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public PlayerSoundController playerSoundController;
     public float speed = 5f;
     private Animator anim;
     private Rigidbody2D rb2d;
@@ -26,6 +27,9 @@ public class Player : MonoBehaviour
     private bool isNockbacking;
     public int health;
     public int vidaMax = 3;
+    private bool step1 = true;
+    float timeByStep = 0.3f;
+    float count = 0f;
 
     // ===============================
     // ATAQUE AL JEFE FINAL
@@ -68,12 +72,32 @@ public class Player : MonoBehaviour
             rb2d.velocity = new Vector2(move * speed, rb2d.velocity.y);
 
         if (move != 0)
+        {
             transform.localScale = new Vector3(Mathf.Sign(move) * 5, 5, 1);
+            count += Time.deltaTime;
+            if (count >= timeByStep)
+            {
+                count = 0f;
+                if (step1)
+                {
+                    playerSoundController.PlayMov1();
+                }
+                else
+                {
+                    playerSoundController.PlayMov2();
+                }
+                step1 = !step1;
+            }
+        }
 
         anim.SetBool("inFloor", isGrounded);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded) 
+        {
+            playerSoundController.PlaySaltar();
             rb2d.velocity = new Vector2(rb2d.velocity.x, jumForce);
+        }
+            
 
         anim.SetBool("recibeDanio", recibeDanio);
 
