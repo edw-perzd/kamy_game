@@ -144,6 +144,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ac2ee72ea662f4db6d1d6576dbc6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIScoreGame: {fileID: 0}
+  UIYouWin: {fileID: 0}
+  textNameLevel: {fileID: 0}
+  ButtonNextLevel: {fileID: 0}
+  puntajeTotalText: {fileID: 0}
+  textButtonLevel: {fileID: 0}
 --- !u!95 &2293711167614113961
 Animator:
   serializedVersion: 5

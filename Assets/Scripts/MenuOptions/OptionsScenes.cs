@@ -18,7 +18,7 @@ public class OptionsScenes : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Menu")
+        if (scene.name == "Menu" || scene.name == "CreditsScene")
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
             Destroy(gameObject);
