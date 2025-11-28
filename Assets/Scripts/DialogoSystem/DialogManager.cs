@@ -46,7 +46,7 @@ public class DialogManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             if (justStarted)
             {

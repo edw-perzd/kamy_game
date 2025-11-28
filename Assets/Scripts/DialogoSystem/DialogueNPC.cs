@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DialogueNPC : MonoBehaviour
 {
+    [SerializeField] private GameObject dialogMark;
     public DialogueLine[] dialogueLines;
 
     private bool playerInRange = false;
@@ -10,7 +11,7 @@ public class DialogueNPC : MonoBehaviour
     private void Update()
     {
         if (playerInRange && dialogueStarted == false &&
-            (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")))
+            Input.GetKeyDown(KeyCode.E))
         {
             DialogManager.instance.StartDialogue(dialogueLines);
             dialogueStarted = true;

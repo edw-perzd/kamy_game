@@ -40,7 +40,8 @@ public class NextLevel : MonoBehaviour
     {
         PlayBright();
         Time.timeScale = 0f;
-        UIScoreGame.SetActive(false);
+        if (UIScoreGame != null)
+            UIScoreGame.SetActive(false);
         puntajeTotalText.text = puntajeTotalLbl + GameManager.Instance.TotalScore.ToString();
         int nivelActual = SceneManager.GetActiveScene().buildIndex;
         int nextIndex = SceneManager.GetActiveScene().buildIndex + 1;
@@ -59,7 +60,12 @@ public class NextLevel : MonoBehaviour
             ButtonNextLevel.SetActive(true);
             if (nextIndex == SceneManager.sceneCountInBuildSettings - 1)
             {
-                textButtonLevel.text = "Ir a los creditos";
+                textButtonLevel.text = "Ir a ls créditos";
+                ButtonNextLevel.SetActive(true);
+            }
+            else
+            {
+                textButtonLevel.text = "Tú ganas";
                 ButtonNextLevel.SetActive(true);
             }
         }
@@ -67,7 +73,12 @@ public class NextLevel : MonoBehaviour
         {
             if (nextIndex == SceneManager.sceneCountInBuildSettings - 1)
             {
-                textButtonLevel.text = "Ir a los creditos";
+                textButtonLevel.text = "Ir a ls créditos";
+                ButtonNextLevel.SetActive(true);
+            }
+            else
+            {
+                textButtonLevel.text = "Tú ganas";
                 ButtonNextLevel.SetActive(true);
             }
         }
