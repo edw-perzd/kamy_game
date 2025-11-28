@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using UnityEditor.Experimental.GraphView;
 
 public class MaloPatrullaje : MonoBehaviour
 {
-    // ===============================
-    // VARIABLES PATRULLAJE CON IA SIMPLE
-    // ===============================
     public Transform player;
     public float detectionRange = 5f;
     private Vector2 movement;
     private bool playerDetected;
-
 
     public int scoreValue = 5;
     public int damage = 1;
@@ -62,6 +57,7 @@ public class MaloPatrullaje : MonoBehaviour
 
         Flip();
     }
+
     void Update()
     {
         anim.SetBool("enMovimiento", enMovimiento);
@@ -89,7 +85,6 @@ public class MaloPatrullaje : MonoBehaviour
 
         if (!playerDetected)
         {
-            // Cuando llega cerca de un punto, cambia al otro
             if (Mathf.Abs(targetPosition.x - currentPosition.x) < tolerance)
             {
                 targetPosition = (targetPosition == pointB.position) ? pointA.position : pointB.position;
@@ -97,7 +92,6 @@ public class MaloPatrullaje : MonoBehaviour
             }
         }
 
-        // Movimiento hacia el objetivo
         if (!isNockbacking)
         {
             if (!playerDetected)
@@ -109,7 +103,6 @@ public class MaloPatrullaje : MonoBehaviour
             }
             else
             {
-                // rb.MovePosition(rb.position + movement * moveSpeed * Time.deltaTime);
                 rb.velocity = new Vector2(movement.x * moveSpeed, rb.velocity.y);
                 FlipOnPersecucion();
             }
@@ -157,6 +150,7 @@ public class MaloPatrullaje : MonoBehaviour
             player.StartInvincibility(invincibilityTime);
         }
     }
+
     public void Knockback(Vector3 sourcePosition, float force)
     {
         isNockbacking = true;
@@ -173,25 +167,16 @@ public class MaloPatrullaje : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
         health -= damage;
-        // Debug.Log("Daño al enemigo. Vida actual del enemigo: " + health);
 
         if (health <= 0)
-        {
-            // Die();
             morido = true;
-        }
         else
-        {
             morido = false;
-        }
-
     }
 
     private void Die()
     {
-        // morido = true;
         GameManager.Instance.AddScore(scoreValue);
         Destroy(this.gameObject);
     }
